@@ -10,6 +10,8 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
 
   isLoginMode = true;
+  isLoading = false;
+  error!: String;
 
   constructor(private authService : AuthService ) { }
 
@@ -28,14 +30,19 @@ export class AuthComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
+    this.isLoading=true;
+
     if( this.isLoginMode){
       //..
     } else{
     this.authService.signUp(email,password)
     .subscribe(resData => {
       console.log(resData);
+      this.isLoading=false;
     }, error => {
-      console.log(error)
+      console.log(error);
+      this.error='an Error occured';
+      this.isLoading=false;
     }
     );
 
