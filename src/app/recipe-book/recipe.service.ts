@@ -8,7 +8,7 @@ import { Recipe } from "./recipe.model";
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
 
-    private recipes : Recipe[] = [
+    /*private recipes : Recipe[] = [
         new Recipe(
             'Spicy Cauliflower wrap', 
             'Tasty and veggielicious', 
@@ -26,9 +26,16 @@ export class RecipeService {
                 new Ingredient('leaves', 12)
 
             ])
-      ];
+      ];*/
+
+      private recipes : Recipe[] = [];
 
       constructor(private slService : ShoppingListService){}
+
+      setRecipes(recipes:Recipe[]){
+          this.recipes = recipes;
+          this.recipesChanged.next(this.recipes.slice());
+      }
 
       getRecipes(){
           return this.recipes.slice();
