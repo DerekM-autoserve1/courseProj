@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { User } from "./user.model";
 import { Subject } from "rxjs";
 import { tap } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 export interface AuthResponseData {
     idToken : string,
@@ -18,7 +19,12 @@ export interface AuthResponseData {
 export class AuthService{
     user = new Subject<User>();
 
-    constructor(private http : HttpClient){}
+    logout(){
+        this.user.next(null!);
+        this.router.navigate(['/auth'])
+    }
+
+    constructor(private http : HttpClient, private router: Router){}
 
     signUp(email:string, password:string){
         return this.http.post<AuthResponseData>
