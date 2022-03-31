@@ -6,24 +6,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipe-book/recipe.service';
 import { AuthComponent } from './auth/auth.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { RecipesModule } from './recipe-book/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
     AuthComponent,
-    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +25,9 @@ import { RecipesModule } from './recipe-book/recipes.module';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    RecipesModule
+    RecipesModule,
+    ShoppingListModule,
+    SharedModule
   ],
   providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
